@@ -12,7 +12,8 @@ The Atolye.Maybe package is available as a NuGet package. You can find it on the
 
 ## Features
 
-- **Type Safety**: Avoids null reference exceptions and encourages more functional programming patterns.
+- **Null Safety**: Avoids null reference exceptions and encourages more functional programming patterns.
+- **Access Control**: Prevents direct access to the base value without performing a control operation.
 - **Async Support**: Seamlessly integrates with asynchronous programming models in .NET.
 - **Simplicity**: Easy to use and understand, with a straightforward API.
 - **Flexibility**: Provides methods to chain operations on the optional values, including checks and transformations, without unwrapping them.
