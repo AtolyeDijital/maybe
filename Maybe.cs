@@ -229,5 +229,3 @@ public class Maybe<T>
     }
     #endregion
 }
-
-
