@@ -4,6 +4,12 @@ The Maybe monad implemented here provides a way to handle optional values withou
 It aims to prevent the developer from accessing the value without checking it.
 This implementation supports async operations.
 
+## NuGet Package
+
+The Atolye.Maybe package is available as a NuGet package. You can find it on the NuGet Gallery:
+[Atolye.Maybe](https://www.nuget.org/packages/Atolye.Maybe)
+
+
 ## Features
 
 - **Type Safety**: Avoids null reference exceptions and encourages more functional programming patterns.
