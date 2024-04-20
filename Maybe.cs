@@ -168,6 +168,19 @@ public class Maybe<T>
         throw new ApplicationException(errorMessage);
     }
 
+    public Maybe<T> With(params Action<T>[] modifications){
+
+        if (!hasValue)
+            return new Maybe<T>();
+
+        var val = value;
+        foreach (var modify in modifications)
+        {
+            modify(val);
+        }
+        return val;        
+    }
+
     #region Async
     public async Task<Maybe<TResult>> BindAsync<TResult>(Func<T, Task<Maybe<TResult>>> func)
     {
