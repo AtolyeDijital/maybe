@@ -9,7 +9,6 @@ This implementation supports async operations.
 The Atolye.Maybe package is available as a NuGet package. You can find it on the NuGet Gallery:
 [Atolye.Maybe](https://www.nuget.org/packages/Atolye.Maybe)
 
-
 ## Features
 
 - **Null Safety**: Avoids null reference exceptions and encourages more functional programming patterns.
@@ -17,7 +16,6 @@ The Atolye.Maybe package is available as a NuGet package. You can find it on the
 - **Async Support**: Seamlessly integrates with asynchronous programming models in .NET.
 - **Simplicity**: Easy to use and understand, with a straightforward API.
 - **Flexibility**: Provides methods to chain operations on the optional values, including checks and transformations, without unwrapping them.
-
 
 ## Usage
 
@@ -87,6 +85,20 @@ Order order = Maybe<Order>.from(orderData)
                         .Bind(CreateOrderItems)
                         .ValueOrThrow("Can not create order!");
 
+
+
+```
+
+### Using the `With` Method
+
+The `With` method provided by the Maybe monad allows for the modification of the underlying value while preserving the optional nature of the Maybe type. This method is particularly useful when you want to apply a series of modifications to the value if it exists, without altering the original value itself.
+
+```csharp
+Order order = Maybe<Order>.from(orderData)
+                        .With(
+                            ord => ord.CustomerName = "Modified or newly added Customer Name",
+                            ord => ord.Location = "Modified or newly added Location"
+                        )
 ```
 
 ### Async Support
@@ -103,8 +115,8 @@ Order order = await Maybe<Order>.from(orderData)
 
 ```
 
-
 ## License
+
 Copyright (c) Atölye Dijital 2022
 
 This project is open-sourced under the MIT license. See the LICENSE file for details.
