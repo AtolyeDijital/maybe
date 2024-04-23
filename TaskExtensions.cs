@@ -46,10 +46,14 @@ public static class TaskExtensions
         this Task<Maybe<T>> task, Func<T, bool> predicate, string errorMessage)
         => (await task).Check(predicate, errorMessage);
     public async static Task<Maybe<T>> CheckAsync<T>(
-    this Task<Maybe<T>> task, Func<T, Task<bool>> predicate, string errorMessage)
+        this Task<Maybe<T>> task, Func<T, Task<bool>> predicate, string errorMessage)
     {
         var maybe = await task;
         return await maybe.CheckAsync(predicate, errorMessage);
     }
+
+    public async static Task<Maybe<T>> With<T>(
+        this Task<Maybe<T>> task, params Action<T>[] modifications)
+        => (await task).With(modifications);
 
 }

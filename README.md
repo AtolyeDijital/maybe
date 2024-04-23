@@ -91,7 +91,7 @@ Order order = Maybe<Order>.from(orderData)
 
 ### Using the `With` Method
 
-The `With` method provided by the Maybe monad allows for the modification of the underlying value while preserving the optional nature of the Maybe type. This method is particularly useful when you want to apply a series of modifications to the value if it exists, without altering the original value itself.
+The `With` method provided by the Maybe monad allows for the modification of the underlying value while preserving the optional nature of the Maybe type.
 
 ```csharp
 Order order = Maybe<Order>.from(orderData)
@@ -99,6 +99,7 @@ Order order = Maybe<Order>.from(orderData)
                             ord => ord.CustomerName = "Modified or newly added Customer Name",
                             ord => ord.Location = "Modified or newly added Location"
                         )
+                        .ValueOrThrow("Can not get order!");
 ```
 
 ### Async Support
