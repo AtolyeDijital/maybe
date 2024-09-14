@@ -14,7 +14,7 @@ public class Maybe<T>
         hasValue = false;
     }
 
-    private Maybe(T value) 
+    private Maybe(T value)
     {
         this.value = value;
         hasValue = true;
@@ -22,7 +22,6 @@ public class Maybe<T>
 
     #region Private Methods
 
-    
     private Maybe<TResult> GetValueOrThrow<TResult>(Maybe<TResult> val, string errorMessage)
     {
         if (val == null || !val.hasValue)
@@ -114,8 +113,6 @@ public class Maybe<T>
         return val;
     }
 
-
-
     public Maybe<TResult> Bind<TResult>(Func<T, Maybe<TResult>> func, string errorMessage)
     {
         if (!hasValue)
@@ -136,7 +133,6 @@ public class Maybe<T>
         outVar = val.value;
         return val;
     }
-
 
     public Maybe<TResult> Bind<TResult>(Func<T, TResult> func, string errorMessage = "")
     {
@@ -168,7 +164,8 @@ public class Maybe<T>
         throw new ApplicationException(errorMessage);
     }
 
-    public Maybe<T> With(params Action<T>[] modifications){
+    public Maybe<T> With(params Action<T>[] modifications)
+    {
 
         if (!hasValue)
             return new Maybe<T>();
@@ -178,7 +175,7 @@ public class Maybe<T>
         {
             modify(val);
         }
-        return val;        
+        return val;
     }
 
     #region Async
@@ -213,7 +210,6 @@ public class Maybe<T>
         var val = await Task.FromResult(func(value));
         return GetValueOrThrow(val, errorMessage);
     }
-
 
     public async Task<Maybe<TResult>> BindAsync<TResult>(Func<T, Task<TResult>> func)
     {
