@@ -49,6 +49,17 @@ Maybe<Order> order = Maybe<Order>.from(orderData)
                             .Bind(CalculateItemSums);
 
 
+// You can use orElse to provide a default value or execute a callback function for null or empty values
+Order order = Maybe<Order>.from(orderData)
+    .OrElse(() => Maybe<Order>.from(new Order { Id = orderId, Status = "Pending" }))
+    .ValueOrThrow("Failed to retrieve or create order");
+
+Order order = Maybe<Order>.from(orderData)
+    .OrElse(() => {
+        Console.WriteLine($"Order {orderId} not found.");
+    });
+
+
 // Access unrwapped value if it is not null, otherwise throws exception with specified message.
 Order order = Maybe<Order>.from(orderData)
                             .Bind(ord => AddOrderItems(ord, itemData))

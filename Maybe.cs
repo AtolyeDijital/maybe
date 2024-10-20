@@ -237,4 +237,16 @@ public class Maybe<T>
         return val;
     }
     #endregion
+
+    public T OrElse(T defaultValue)
+    {
+        return hasValue ? value : defaultValue;
+    }
+
+    public T OrElse(Func<T> defaultValueProvider)
+    {
+        return hasValue ? value : defaultValueProvider();
+    }
+
 }
+
