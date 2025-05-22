@@ -67,20 +67,7 @@ public class Maybe<T>
         return this;
     }
 
-    public async Task<Maybe<T>> CheckAsync(Func<T, Task<bool>> predicate, string errorMessage)
-    {
-        if (!hasValue)
-        {
-            return this;
-        }
-
-        if (await predicate(this.value))
-        {
-            return this;
-        }
-
-        throw new ApplicationException(errorMessage);
-    }
+    
 
 
     public static implicit operator Maybe<T>(T value)
@@ -236,6 +223,39 @@ public class Maybe<T>
         }
         return val;
     }
+
+    public async Task<Maybe<T>> CheckAsync(Func<T, Task<bool>> predicate, string errorMessage)
+    {
+        if (!hasValue)
+        {
+            return this;
+        }
+
+        if (await predicate(this.value))
+        {
+            return this;
+        }
+
+        throw new ApplicationException(errorMessage);
+    }
+
+
+    public async Task<T> OrElseAsync(Func<Task<T>> defaultValueProvider, string message = "Value provider returns null!")
+    {
+        if (hasValue)
+        {
+            return value;
+        }
+
+        var x = await defaultValueProvider();
+        if (x != null)
+        {
+            return x;
+        }
+        
+        throw new ArgumentNullException(message);
+    }
+
     #endregion
 
     public T OrElse(T defaultValue)
@@ -246,6 +266,7 @@ public class Maybe<T>
     public T OrElse(Func<T> defaultValueProvider)
     {
         return hasValue ? value : defaultValueProvider();
+        
     }
 
 }

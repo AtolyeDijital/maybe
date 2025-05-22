@@ -56,4 +56,24 @@ public static class TaskExtensions
         this Task<Maybe<T>> task, params Action<T>[] modifications)
         => (await task).With(modifications);
 
+    public async static Task<T> OrElse<T>(
+        this Task<Maybe<T>> task, T defaultValue)
+        => (await task).OrElse(defaultValue);
+
+    public async static Task<T> OrElse<T>(
+        this Task<Maybe<T>> task, Func<T> defaultValueProvider)
+        => (await task).OrElse(defaultValueProvider);
+
+    public async static Task<T> OrElseAsync<T>(
+        this Task<Maybe<T>> task, Func<T> defaultValueProvider)
+        => (await task).OrElse(defaultValueProvider);
+
+    public async static Task<T> OrElseAsync<T>(
+       this Task<Maybe<T>> task,
+       Func<Task<T>> defaultValueProvider)
+    {
+        var maybe = await task;
+        return await maybe.OrElseAsync(defaultValueProvider);
+    }
+
 }
