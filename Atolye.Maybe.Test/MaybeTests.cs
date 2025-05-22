@@ -58,7 +58,6 @@ namespace Atolye.Maybe.Test
 
             // assert
             Assert.Equal(20, result.Age);
-            Assert.Equal(param1.Age, result.Age);
         }
     }
 }

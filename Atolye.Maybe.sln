@@ -5,12 +5,9 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atolye.Maybe", "Atolye.Maybe\Atolye.Maybe.csproj", "{33AB4466-4814-4359-9C5B-371A7F2082EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atolye.Maybe.Test", "Atolye.Maybe.Test\Atolye.Maybe.Test.csproj", "{E7AD26D1-62C5-4F4F-9E8C-41F47DCD1AA1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atolye.Maybe.Test", "Atolye.Maybe.Test\Atolye.Maybe.Test.csproj", "{E7AD26D1-62C5-4F4F-9E8C-41F47DCD1AA1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E1D129D6-8CC2-4A35-B03B-D558D195BAD8}"
-	ProjectSection(SolutionItems) = preProject
-		README.md = README.md
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

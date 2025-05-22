@@ -258,15 +258,41 @@ public class Maybe<T>
 
     #endregion
 
-    public T OrElse(T defaultValue)
+    public T OrElse(T defaultValue, string message = "Default value is null!")
     {
-        return hasValue ? value : defaultValue;
+        if (hasValue)
+        {
+            return value;
+        }
+        else
+        {
+            if (defaultValue != null)
+            {
+                return defaultValue;
+            }
+            else
+            {
+                throw new ArgumentNullException(message);
+            }
+        }
     }
 
-    public T OrElse(Func<T> defaultValueProvider)
+    public T OrElse(Func<T> defaultValueProvider, string message = "Value provider returns null!")
     {
-        return hasValue ? value : defaultValueProvider();
-        
+        if (hasValue)
+        {
+            return value;
+        }
+        else
+        {
+            var x = defaultValueProvider();
+            if (x != null)
+            {
+                return x;
+            }
+        }
+
+        throw new ArgumentNullException(message);
     }
 
 }
