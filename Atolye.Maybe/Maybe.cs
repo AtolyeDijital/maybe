@@ -151,6 +151,15 @@ public class Maybe<T>
         throw new ApplicationException(errorMessage);
     }
 
+    [return: NotNull]
+    public T ValueOrThrow(Exception exception)
+    {
+        if (hasValue)
+            return value!;
+
+        throw exception;
+    }
+
     public Maybe<T> With(params Action<T>[] modifications)
     {
 
