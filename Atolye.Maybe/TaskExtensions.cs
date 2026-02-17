@@ -38,6 +38,11 @@ public static class TaskExtensions
         this Task<Maybe<T>> task, string errorMessage)
         => (await task).ValueOrThrow(errorMessage);
 
+    [return: NotNull]
+    public async static Task<T> ValueOrThrow<T>(
+        this Task<Maybe<T>> task, Exception exception)
+        => (await task).ValueOrThrow(exception);
+
     public async static Task<Maybe<T>> Check<T>(
         this Task<Maybe<T>> task, Func<T, bool> predicate)
         => (await task).Check(predicate);
