@@ -11,5 +11,7 @@ jobs:
       - uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '8.0.x'
-      - run: dotnet pack -c Release
+      - run: dotnet restore Atolye.Maybe/Atolye.Maybe.csproj
+      - run: dotnet build Atolye.Maybe/Atolye.Maybe.csproj -c Release --no-restore
+      - run: dotnet pack Atolye.Maybe/Atolye.Maybe.csproj -c Release --no-build
       - run: dotnet nuget push **/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
